@@ -7,7 +7,7 @@ public interface IUserRepository {
 
   public boolean deleteById(Long id);
 
-  public UserDto createProduct(UserDto userDto);
+  public UserDto createUser(UserDto userDto);
 
-  public UserDto updateProduct(UserDto userDto);
+  public UserDto updateUser(UserDto userDto);
 }

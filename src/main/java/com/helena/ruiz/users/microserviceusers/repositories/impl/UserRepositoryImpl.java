@@ -3,6 +3,7 @@ package com.helena.ruiz.users.microserviceusers.repositories.impl;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.helena.ruiz.users.microserviceusers.model.UserModel;
 import com.helena.ruiz.users.microserviceusers.model.dto.UserDto;
@@ -10,6 +11,7 @@ import com.helena.ruiz.users.microserviceusers.repositories.IUserRepository;
 import com.helena.ruiz.users.microserviceusers.repositories.dao.IUserDao;
 import com.helena.ruiz.users.microserviceusers.utils.ModelMapper;
 
+@Repository
 public class UserRepositoryImpl implements IUserRepository {
   @Autowired
   public IUserDao iUserDao;
@@ -17,7 +19,7 @@ public class UserRepositoryImpl implements IUserRepository {
   @Override
   public UserDto getById(Long id) {
     UserModel product = iUserDao.findById(id)
-        .orElseThrow(() -> new NoSuchElementException("Product does not exist"));
+        .orElseThrow(() -> new NoSuchElementException("User does not exist"));
     return ModelMapper.convertToUserDto(product);
   }
 
@@ -32,7 +34,7 @@ public class UserRepositoryImpl implements IUserRepository {
   }
 
   @Override
-  public UserDto createProduct(UserDto userDto) {
+  public UserDto createUser(UserDto userDto) {
     UserModel userModel = ModelMapper.convertToUserModel(userDto);
     userModel = iUserDao.save(userModel);
     UserDto UserDto2 = ModelMapper.convertToUserDto(userModel);
@@ -40,9 +42,9 @@ public class UserRepositoryImpl implements IUserRepository {
   }
 
   @Override
-  public UserDto updateProduct(UserDto userDto) {
+  public UserDto updateUser(UserDto userDto) {
     if (!iUserDao.existsById(userDto.getId())) {
-      throw new NoSuchElementException("Product does not exist");
+      throw new NoSuchElementException("User does not exist");
     }
 
     UserModel userModel = ModelMapper.convertToUserModel(userDto);
