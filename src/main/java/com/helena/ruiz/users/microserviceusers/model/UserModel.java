@@ -8,16 +8,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "usuario")
 public class UserModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @Column(nullable = false, name = "name")
+  @Column(name = "name")
   private String name;
-  @Column(nullable = false, name = "email")
+  @Column(name = "email")
   private String email;
-  @Column(nullable = false, name = "pwd")
+  @Column(name = "pwd")
   private String pwd;
   public Long getId() {
     return id;
